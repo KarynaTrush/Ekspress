@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Танцевальный коллектив Экспресс</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF4E6; /* Светлый кремовый фон */
+            color: #555;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход цвета фона и текста */
+        }
+
+        header {
+            background-color: #F8C8B0; /* Персиковый */
+            color: #333;
+            padding: 40px;
+            text-align: center;
+            transition: background-color 1s ease, color 1s ease; /* Плавный переход цветов */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для глубины */
+        }
+
+        header img {
+            width: 100px;
+            border-radius: 50%;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #E6B5E3; /* Нежно-лавандовый */
+            flex-wrap: wrap; /* Адаптивное меню */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для меню */
+        }
+
+        nav a {
+            color: #333;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: color 0.3s ease, border-bottom 0.3s ease, transform 0.3s ease;
+            border-bottom: 2px solid transparent;
+            display: flex; /* Flex для иконок */
+            align-items: center; /* Вертикальное выравнивание */
+        }
+
+        nav a i {
+            margin-right: 8px; /* Отступ для иконки */
+        }
+
+        nav a:hover {
+            background-color: #F2D7D5; /* Нежный акцент */
+            color: #555;
+            transform: scale(1.1); /* Легкое увеличение */
+        }
+
+        .theme-language-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px; /* Отступ между кнопками */
+        }
+
+        .theme-language-btn {
+            background-color: #B5838D; /* Фиолетовый цвет кнопки */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для кнопок */
+        }
+
+        .theme-language-btn:hover {
+            background-color: #A45C6C; /* Темный фиолетовый при наведении */
+            transform: scale(1.05); /* Увеличение при наведении */
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #F8C8B0; /* Персиковый */
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для секций */
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #E6B5E3; /* Подчёркивание для заголовков */
+            padding-bottom: 10px;
+        }
+
+        footer {
+            background-color: #E6B5E3; /* Нежно-лавандовый */
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Тень для футера */
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Темная тема */
+        .dark-mode {
+            background-color: #333; /* Темный фон */
+            color: #FFF; /* Белый текст */
+        }
+
+        .dark-mode header {
+            background-color: #444; /* Темный заголовок */
+        }
+
+        .dark-mode nav {
+            background-color: #555; /* Темное меню */
+        }
+
+        .dark-mode nav a {
+            color: #DDD; /* Светлый текст в меню */
+        }
+
+        .dark-mode section {
+            background-color: #444; /* Темный фон секций */
+            color: #FFF; /* Белый текст в секциях */
+        }
+
+        .dark-mode footer {
+            background-color: #555; /* Темный футер */
+            color: #DDD; /* Светлый текст в футере */
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                width: 80px;
+            }
+            nav a {
+                padding: 10px;
+                font-size: 16px;
+            }
+            .image-container img {
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav a {
+                font-size: 14px;
+                padding: 8px;
+            }
+            .image-container img {
+                max-width: 150px;
+            }
+            section {
+                margin: 10px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <img src="images/logo.jpeg" alt="Логотип Экспресс">
+        <h1 id="header-title">Танцевальный коллектив "Экспресс"</h1>
+        <p id="header-welcome">Добро пожаловать на официальный сайт нашего коллектива!</p>
+    </header>
+
+    <div class="theme-language-buttons">
+        <button id="theme-toggle" class="theme-language-btn">Светлая тема</button>
+        <button id="language-toggle" class="theme-language-btn">RU</button>
+    </div>
+
+    <nav>
+        <a href="#about"><i class="fas fa-info-circle"></i><span id="link-about">О нас</span></a>
+        <a href="#schedule"><i class="fas fa-calendar-alt"></i><span id="link-schedule">Расписание</span></a>
+        <a href="#performances"><i class="fas fa-theater-masks"></i><span id="link-performances">Наши выступления</span></a>
+        <a href="#contact"><i class="fas fa-envelope"></i><span id="link-contact">Контакты</span></a>
+    </nav>
+
+    <section id="about">
+        <h2 id="about-title">О нас</h2>
+        <div class="image-container">
+            <img src="images/1.jpg" alt="Танцевальный коллектив Экспресс">
+        </div>
+        <p id="about-text">Мы — танцевальный коллектив "Экспресс", который радует зрителей своими яркими выступлениями.</p>
+    </section>
+    
+    <section id="schedule">
+        <h2 id="schedule-title">Расписание</h2>
+        <p id="schedule-text">Наши занятия проходят каждый понедельник, среду и пятницу с 18:00 до 20:00.</p>
+    </section>
+
+    <section id="performances">
+        <h2 id="performances-title">Наши выступления</h2>
+        <p id="performances-text">Следите за нашими выступлениями в местных культурных центрах и на мероприятиях!</p>
+    </section>
+
+    <section id="contact">
+        <h2 id="contact-title">Контакты</h2>
+        <p id="contact-text">Свяжитесь с нами по электронной почте: example@example.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Танцевальный коллектив "Экспресс". Все права защищены.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            RU: {
+                title: "Танцевальный коллектив 'Экспресс'",
+                welcome: "Добро пожаловать на официальный сайт нашего коллектива!",
+                aboutTitle: "О нас",
+                aboutText: "Мы — танцевальный коллектив 'Экспресс', который радует зрителей своими яркими выступлениями.",
+                scheduleTitle: "Расписание",
+                scheduleText: "Наши занятия проходят каждый понедельник, среду и пятницу с 18:00 до 20:00.",
+                performancesTitle: "Наши выступления",
+                performancesText: "Следите за нашими выступлениями в местных культурных центрах и на мероприятиях!",
+                contactTitle: "Контакты",
+                contactText: "Свяжитесь с нами по электронной почте: example@example.com",
+                linkAbout: "О нас",
+                linkSchedule: "Расписание",
+                linkPerformances: "Наши выступления",
+                linkContact: "Контакты",
+            },
+            EN: {
+                title: "Dance Group 'Express'",
+                welcome: "Welcome to the official website of our group!",
+                aboutTitle: "About Us",
+                aboutText: "We are the 'Express' dance group, delighting audiences with our vibrant performances.",
+                scheduleTitle: "Schedule",
+                scheduleText: "Our classes are held every Monday, Wednesday, and Friday from 6 PM to 8 PM.",
+                performancesTitle: "Our Performances",
+                performancesText: "Follow our performances at local cultural centers and events!",
+                contactTitle: "Contact",
+                contactText: "Contact us via email: example@example.com",
+                linkAbout: "About Us",
+                linkSchedule: "Schedule",
+                linkPerformances: "Our Performances",
+                linkContact: "Contact",
+            },
+            UA: {
+                title: "Танцювальний колектив 'Експрес'",
+                welcome: "Ласкаво просимо на офіційний сайт нашого колективу!",
+                aboutTitle: "Про нас",
+                aboutText: "Ми — танцювальний колектив 'Експрес', який радує глядачів своїми яскравими виступами.",
+                scheduleTitle: "Розклад",
+                scheduleText: "Наші заняття проходять щопонеділка, середи та п’ятниці з 18:00 до 20:00.",
+                performancesTitle: "Наші виступи",
+                performancesText: "Слідкуйте за нашими виступами в місцевих культурних центрах та на заходах!",
+                contactTitle: "Контакти",
+                contactText: "Зв’яжіться з нами електронною поштою: example@example.com",
+                linkAbout: "Про нас",
+                linkSchedule: "Розклад",
+                linkPerformances: "Наші виступи",
+                linkContact: "Контакти",
+            },
+            PL: {
+                title: "Zespół taneczny 'Express'",
+                welcome: "Witamy na oficjalnej stronie naszej grupy!",
+                aboutTitle: "O nas",
+                aboutText: "Jesteśmy zespołem tanecznym 'Express', który cieszy widzów naszymi żywymi występami.",
+                scheduleTitle: "Harmonogram",
+                scheduleText: "Nasze zajęcia odbywają się w każdy poniedziałek, środę i piątek od 18:00 do 20:00.",
+                performancesTitle: "Nasze występy",
+                performancesText: "Śledź nasze występy w lokalnych centrach kulturalnych i na wydarzeniach!",
+                contactTitle: "Kontakt",
+                contactText: "Skontaktuj się z nami mailowo: example@example.com",
+                linkAbout: "O nas",
+                linkSchedule: "Harmonogram",
+                linkPerformances: "Nasze występy",
+                linkContact: "Kontakt",
+            },
+            ZH: {
+                title: "舞蹈团 '快车'",
+                welcome: "欢迎来到我们团队的官方网站！",
+                aboutTitle: "关于我们",
+                aboutText: "我们是舞蹈团 '快车'，用活力四射的表演给观众带来欢乐。",
+                scheduleTitle: "时间表",
+                scheduleText: "我们的课程在每周一、三和五的下午6点到8点进行。",
+                performancesTitle: "我们的演出",
+                performancesText: "关注我们在当地文化中心和活动中的演出！",
+                contactTitle: "联系方式",
+                contactText: "通过电子邮件与我们联系：example@example.com",
+                linkAbout: "关于我们",
+                linkSchedule: "时间表",
+                linkPerformances: "我们的演出",
+                linkContact: "联系方式",
+            }
+        };
+
+        const languageToggleBtn = document.getElementById('language-toggle');
+        let currentLanguageIndex = 0;
+        const languages = Object.keys(translations);
+
+        function changeLanguage() {
+            const currentLang = languages[currentLanguageIndex];
+            const translation = translations[currentLang];
+
+            // Обновление текста на странице
+            document.title = translation.title;
+            document.getElementById('header-title').textContent = translation.title;
+            document.getElementById('header-welcome').textContent = translation.welcome;
+            document.getElementById('about-title').textContent = translation.aboutTitle;
+            document.getElementById('about-text').textContent = translation.aboutText;
+            document.getElementById('schedule-title').textContent = translation.scheduleTitle;
+            document.getElementById('schedule-text').textContent = translation.scheduleText;
+            document.getElementById('performances-title').textContent = translation.performancesTitle;
+            document.getElementById('performances-text').textContent = translation.performancesText;
+            document.getElementById('contact-title').textContent = translation.contactTitle;
+            document.getElementById('contact-text').textContent = translation.contactText;
+            document.getElementById('link-about').textContent = translation.linkAbout;
+            document.getElementById('link-schedule').textContent = translation.linkSchedule;
+            document.getElementById('link-performances').textContent = translation.linkPerformances;
+            document.getElementById('link-contact').textContent = translation.linkContact;
+
+            languageToggleBtn.textContent = currentLang; // Обновляем текст на кнопке выбора языка
+        }
+
+        languageToggleBtn.addEventListener('click', () => {
+            currentLanguageIndex = (currentLanguageIndex + 1) % languages.length;
+            changeLanguage();
+        });
+
+        // Выбор языка по умолчанию
+        changeLanguage();
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            themeToggleBtn.textContent = isDarkMode ? 'Светлая тема' : 'Темная тема';
+        });
+
+        // Анимация секций при прокрутке
+        const sections = document.querySelectorAll('section');
+
+        const options = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Плавные переходы между страницами (пример для anchor ссылок)
+        const links = document.querySelectorAll('nav a');
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
